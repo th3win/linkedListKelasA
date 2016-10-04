@@ -33,9 +33,21 @@ class LinkedList{
         // TODO: write the code, add newNode
     }
     public Node qpop(){ // 5 orang
-        // TODO: write the code, pop node (queue), return it
-        return null;
+        Node data1 = null;
+        if(head == tail){ 
+            data1 = head;
+            head  = null;
+            tail  = null;
+        }
+    else { 
+            data1      = head;
+            head       = head.next;
+            head.prev  = null;
+            data1.next = null;
+           }
+        return data1;
     }
+    
     public Node spop(){ // 5 orang
         // TODO: write the code, pop node (stack), return it
         return null;

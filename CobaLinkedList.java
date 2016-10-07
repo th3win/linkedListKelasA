@@ -41,26 +41,83 @@ class LinkedList{
     }
     public Node qpop(){ // 5 orang
         // TODO: write the code, pop node (queue), return it
-        Node temp = head.next;
-        head = temp;
-        temp.prev=null;
-        return null;
-    }
-    public Node spop(){ // 5 orang
-        if(head != null){
-            Node temp = head;// deklarasi node temporary,disimpan sementara dalam temp
+        if(head == null){
+            System.out.println("LinkedList Kosong");
+            return null;
+        }else if(head == tail){
+            Node temp = head;
+            head = null;
+            tail = null;
+            return temp;
+        }else{
+            Node temp = head;
             head = head.next;
+            head.prev = null;
             temp.next = null;
             return temp;
-        } else {
-            System.out.println("List Kosong.");
-            return null;}
+        }
+    }
+    public Node spop(){ // 5 orang
+        if(head == tail){
+            Node temp = tail;
+            tail = null;
+            head = null;
+            return temp;
+        }else if(tail == null){
+            System.out.println("LinkedList Kosong");
+            return null;
+        }else{
+            Node temp = tail;
+            tail = tail.prev;
+            tail.next = null;
+            temp.prev = null;
+            return temp;
+        }
     }
     public void insert(Node newNode, Node position){ // 6 orang
         // TODO: insert newNode after position
+        Node baru = newNode;
+        Node current = head;
+        if(head != null){
+            while(!current.data.equalsIgnoreCase(position.data)){
+                current = current.next;
+            }
+            if(current.data.equals(tail.data)){ // Like push
+                baru.setPrev(current);
+                tail = baru;
+            }else{
+                baru.setNext(current.next);
+                baru.setPrev(current);
+            }
+        }else{
+            System.out.print("not allowed to insert newNode, use push instead");
+        }
     }
     public void delete(Node position){ // 6 orang
         // TODO: delete Node position from linked list
+        Node current = head;
+        while(!current.data.equals(position.data) && !current.equals(tail)){
+            current = current.next;
+        }
+        if(!current.data.equals(position.data) && current.equals(tail)){
+            System.out.println("delete error, Node "+position.data+" not found");
+        }else if(current.next != null && !current.equals(head) && !current.equals(tail)){
+            Node temp = current;
+            temp = temp.prev;
+            temp.setNext(current.next);
+            current = null;
+        }else{
+            if(current.equals(head)){
+                head = head.next;
+                head.setNext(head.next);
+            }else if(current.equals(tail)){
+                tail = tail.prev;
+                tail.next = null;
+                tail.setPrev(tail.prev);
+            }else{
+                System.out.print("delete error, Node "+position.data+" not found");
+            }
+        }
     }
     public void view(){
         Node current = head;
@@ -93,6 +150,4 @@ public class CobaLinkedList {
         kruntelan.delete(x);
         kruntelan.view(); // A Y B C
     }
-    
 }
-//BISMA Lebih Kece :V:

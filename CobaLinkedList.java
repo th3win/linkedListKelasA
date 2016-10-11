@@ -58,9 +58,19 @@ class LinkedList{
     }
     public void insert(Node newNode, Node position){ // 6 orang
         // TODO: insert newNode after position
+        Node temp = position.next;
+        position.setNext(newNode);
+        newNode.setPrev(position.next.prev);
+        temp.setPrev(newNode);
+        newNode.setNext(temp);
     }
     public void delete(Node position){ // 6 orang
         // TODO: delete Node position from linked list
+        Node ha = position.prev;
+        Node pus = position.next;
+        ha.setNext(pus);
+        pus.setPrev(ha);
+        position = null;
     }
     public void view(){
         Node current = head;

@@ -21,6 +21,7 @@ File ini menggunakan syntax `markdown`. Kolaborasi mahasiswa STIKI kelas pemrogr
     - Roiyan Zadana Al Fauzi, 151-111-073 (github.com/roiyan)
     - Windy, 151-111-098 (github.com/th3win)
     - Mitsaq Enigma Al Afghan (github.com/mitsaqenigma)
+    - Jihan Amalia Mirzal https://github.com/jihanamalia
     - dicky irfan nursandi, 151111005(https://github.com/dickyirfan)
     - yosias suparno, 151111010(https://github.com/yosiasm)
     - ganis ilham ashary, 151111020(https://github.com/GanizGunner)

@@ -35,7 +35,7 @@ class LinkedList{
             head = newNode;
             tail = newNode;
         }else{
-            tail.next = newNode;
+            tail.setNext(newNode);
             tail = newNode;
         }
     }
@@ -76,13 +76,23 @@ class LinkedList{
     }
     public void insert(Node newNode, Node position){ // 6 orang
         // TODO: insert newNode after position
+        if(head == null ||position == tail){ // Kalau kosong atau Kalau posisi == tail
+            push(newNode);
+        }else if(position.next != null){
+            newNode.setNext(position.next);
+            position.setNext(newNode);
+            //newNode.setPrev(position);
+        }
+        // Kalau posisi == tail
+        // kondisi normal
         /*
         Node temp = position.next;
         position.setNext(newNode);
-        newNode.setPrev(position.next.prev);
+        //newNode.setPrev(position);
         temp.setPrev(newNode);
-        newNode.setNext(temp);
+        //newNode.setNext(temp);
         */
+        /*
         Node baru = newNode;
         Node current = head;
         if(head != null){
@@ -99,6 +109,7 @@ class LinkedList{
         }else{
             System.out.print("not allowed to insert newNode, use push instead");
         }
+        */
     }
     /*
     public void delete(Node position){ // 6 orang
@@ -106,12 +117,21 @@ class LinkedList{
         Node ha = position.prev;
         Node pus = position.next;
         ha.setNext(pus);
-        pus.setPrev(ha);
-        position = null;
+        //pus.setPrev(ha);
+        //position = null;
     }
     */
     public void delete(Node position){ // 6 orang
+        if(head==null ||position == head){ // kosong || menghapus head
+            qpop();
+        }else if(position == tail){ // menghapus tail
+            spop();
+        }else if(position.next != null && position.prev != null){
+            position.prev.setNext(position.next);
+        }
+        // menghapus di tengah
         // TODO: delete Node position from linked list
+        /*
         Node current = head;
         while(!current.data.equals(position.data) && !current.equals(tail)){
             current = current.next;
@@ -135,6 +155,7 @@ class LinkedList{
                 System.out.print("delete error, Node "+position.data+" not found");
             }
         }
+        */
     }
 
     public void view(){
@@ -155,8 +176,10 @@ public class CobaLinkedList {
         kruntelan.push(new Node("C"));
         kruntelan.qpop();
         kruntelan.view(); // muncul B C
-        kruntelan.spop(); // muncul B
-        kruntelan.spop(); // muncul ''
+        kruntelan.spop(); 
+        kruntelan.view(); // muncul B
+        kruntelan.spop(); 
+        kruntelan.view(); // muncul ''
         Node x = new Node("X");
         Node y = new Node("Y");
         kruntelan.push(new Node("A"));
